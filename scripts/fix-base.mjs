@@ -24,7 +24,7 @@ for (const file of walk(DIST)) {
   if (!exts.some((e) => file.endsWith(e))) continue
   const src = readFileSync(file, 'utf8')
   const out = src.replace(
-    /(["'(=])\/(assets\/|css\/|_next\/|site\.webmanifest)/g,
+    /(["'(=])\/(assets\/|css\/|fonts\/|_next\/|site\.webmanifest)/g,
     (m, pre, path) => `${pre}${BASE}/${path}`,
   )
   if (out !== src) {
