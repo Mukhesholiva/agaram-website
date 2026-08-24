@@ -495,7 +495,7 @@ export default function Home() {
         tabIndex={-1}
       >
         <div className="relative w-full flex-auto place-content-inherit align-items-inherit h-auto break-words text-left overflow-y-auto subpixel-antialiased flex flex-col md:flex-row p-6 md:p-20 gap-6">
-          <div className="w-full md:w-1/3 min-w-[200px]">
+          <div className="w-full md:w-1/3 min-w-[200px] flex items-center justify-center">
             <img
               src="/assets/images/mission/founder-message.webp"
               className="relative z-10 opacity-0 shadow-black/5 data-[loaded=true]:opacity-100 shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-large w-full h-auto object-contain"
