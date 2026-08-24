@@ -353,8 +353,7 @@ export default function OurJourney() {
                   </p>
                 </div>
               </div>
-            </div>
-            <div className="w-full max-w-screen-xl mx-auto px-4 py-12">
+              <div className="w-full max-w-screen-xl mx-auto px-4 py-12">
               <div
                 className="grid grid-cols-3 gap-4 h-[500px] overflow-hidden relative"
                 style={{
@@ -401,6 +400,7 @@ export default function OurJourney() {
                     </div>
                   </div>
                 ))}
+              </div>
               </div>
             </div>
           </div>

@@ -136,6 +136,7 @@ function HeroTextarea({ idBase, label, required = false, placeholder, value, onC
           <textarea
             data-slot="input"
             className={TEXTAREA_CLASS}
+            style={{ minHeight: '60px' }}
             required={required || undefined}
             placeholder={placeholder}
             tabIndex={0}
@@ -622,18 +623,6 @@ export default function Volunteers() {
                           <h3 className="text-lg font-medium mb-6 text-gray-800 border-b border-gray-200 pb-2">
                             Availability &amp; Preferences
                           </h3>
-                          <div className="flex items-center gap-2 text-gray-500 py-4">
-                            <div
-                              aria-label="Loading"
-                              className="relative inline-flex flex-col gap-2 items-center justify-center"
-                            >
-                              <div className="relative flex w-5 h-5">
-                                <i className="absolute w-full h-full rounded-full border-2 border-b-primary animate-spinner-ease-spin border-solid border-t-transparent border-l-transparent border-r-transparent"></i>
-                                <i className="absolute w-full h-full rounded-full border-2 border-b-primary opacity-75 animate-spinner-linear-spin border-dotted border-t-transparent border-l-transparent border-r-transparent"></i>
-                              </div>
-                            </div>
-                            <span className="text-sm">Loading options...</span>
-                          </div>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <DisabledSelect idBase="react-aria-_R_bfrav5ubsnldb" label="Availability" />
                             <HeroInput
