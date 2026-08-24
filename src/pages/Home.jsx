@@ -498,7 +498,7 @@ export default function Home() {
           <div className="w-full md:w-1/3 min-w-[200px]">
             <img
               src="/assets/images/mission/founder-message.webp"
-              className="relative z-10 opacity-0 shadow-black/5 data-[loaded=true]:opacity-100 shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-large h-64 md:h-full w-full object-cover object-top"
+              className="relative z-10 opacity-0 shadow-black/5 data-[loaded=true]:opacity-100 shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-large w-full h-auto object-contain"
               alt="Acme Creators"
               data-loaded="true"
             />
