@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
+import { getToken } from '../lib/api.js';
 
 const FOOTER_LINK_BASE =
   'relative inline-flex items-center tap-highlight-transparent outline-solid outline-transparent data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-medium no-underline hover:opacity-hover active:opacity-disabled transition-opacity text-gray-400 hover:text-gray-200';
@@ -28,7 +29,8 @@ export default function Footer() {
   const homeActive = pathname === '/';
   const volunteerActive = pathname.startsWith('/join-us');
   const financialsActive = pathname === '/financials';
-  const profileActive = pathname === '/profile';
+  const profileActive = pathname === '/profile' || pathname === '/login';
+  const loggedIn = !!getToken();
 
   const tabIconClass = (name, active) =>
     `lucide lucide-${name} ${active ? 'text-primary' : 'text-gray-400'}`;
@@ -523,7 +525,7 @@ export default function Footer() {
             </svg>
             <span className={tabLabelClass(financialsActive)}>Financials</span>
           </Link>
-          <Link className="flex flex-col items-center flex-1 pb-3 pt-2 gap-1" to="/profile">
+          <Link className="flex flex-col items-center flex-1 pb-3 pt-2 gap-1" to={loggedIn ? '/profile' : '/login'}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="22"
@@ -540,7 +542,7 @@ export default function Footer() {
               <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
-            <span className={tabLabelClass(profileActive)}>Profile</span>
+            <span className={tabLabelClass(profileActive)}>{loggedIn ? 'Profile' : 'Login'}</span>
           </Link>
         </nav>
       )}

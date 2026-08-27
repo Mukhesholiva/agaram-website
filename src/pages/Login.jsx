@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { api, getToken, setToken } from '../lib/api.js';
 
 // HeroUI input class strings (verbatim from the reference HTML forms).
 const INPUT_WRAPPER_CLASS =
@@ -14,6 +16,9 @@ const LABEL_CLASS_END =
 
 const INPUT_CLASS =
   'w-full font-normal bg-transparent !outline-solid placeholder:text-foreground-500 focus-visible:outline-solid outline-transparent data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 data-[type=color]:rounded-none file:cursor-pointer file:bg-transparent file:border-0 autofill:bg-transparent bg-clip-text dark:autofill:[-webkit-text-fill-color:hsl(var(--heroui-foreground))] [&::-ms-reveal]:hidden text-small group-data-[has-value=true]:text-default-foreground';
+
+const SUBMIT_BTN_CLASS =
+  'z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap subpixel-antialiased overflow-hidden tap-highlight-transparent transform-gpu data-[pressed=true]:scale-[0.97] cursor-pointer outline-solid outline-transparent data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 min-w-24 h-12 gap-3 rounded-medium [&>svg]:max-w-[theme(spacing.8)] transition-transform-colors-opacity motion-reduce:transition-none bg-primary data-[hover=true]:opacity-hover text-white font-medium w-full';
 
 function HeroInput({ idBase, label, type = 'text', required = false, value, onChange, maxLength }) {
   const [focused, setFocused] = useState(false);
@@ -71,48 +76,118 @@ function HeroInput({ idBase, label, type = 'text', required = false, value, onCh
   );
 }
 
-// The live /login page is client-rendered (the server-rendered reference only
-// contains a loading skeleton), so the phone/OTP form below is a UI-only
-// replica composed from the site's own HeroUI markup, laid out inside the
-// login page's split-screen container.
+// Email + password Login / Register form wired to the VSCF backend, laid out
+// inside the login page's split-screen container.
 export default function Login() {
+  const navigate = useNavigate();
+  const [mode, setMode] = useState('login'); // 'login' | 'register'
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [otp, setOtp] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+
+  const isLogin = mode === 'login';
 
   useEffect(() => {
     document.title = 'Login | Agaram Foundation';
   }, []);
+
+  // Already logged in -> straight to profile.
+  useEffect(() => {
+    if (getToken()) navigate('/profile', { replace: true });
+  }, [navigate]);
+
+  const switchMode = () => {
+    setMode(isLogin ? 'register' : 'login');
+    setError('');
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (submitting) return;
+    setError('');
+    setSubmitting(true);
+    try {
+      const data = isLogin
+        ? await api('/api/auth/login', { method: 'POST', body: { email, password } })
+        : await api('/api/auth/register', { method: 'POST', body: { name, email, phone, password } });
+      setToken(data.token);
+      navigate('/profile');
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <main className="flex-grow w-full overflow-x-hidden overflow-y-auto sm:pb-0 pb-16">
       <div className="flex min-h-screen w-full bg-white">
         <div className="hidden lg:flex lg:w-1/2 bg-primary"></div>
         <div className="flex-1 flex items-center justify-center p-6">
-          <form className="w-full max-w-[420px] space-y-6" onSubmit={(e) => e.preventDefault()}>
-            <h1 className="text-2xl lg:text-3xl font-bold text-gray-800 text-center">Login</h1>
-            <p className="text-gray-600 text-center">Login with your phone number to continue</p>
+          <form className="w-full max-w-[420px] space-y-6" onSubmit={handleSubmit}>
+            <h1 className="text-2xl lg:text-3xl font-bold text-gray-800 text-center">
+              {isLogin ? 'Login' : 'Create an account'}
+            </h1>
+            <p className="text-gray-600 text-center">
+              {isLogin
+                ? 'Login with your email and password to continue'
+                : 'Register with your details to continue'}
+            </p>
+            {!isLogin && (
+              <HeroInput
+                idBase="register-name"
+                label="Full Name"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            )}
             <HeroInput
-              idBase="login-phone"
-              label="Phone Number"
-              type="tel"
+              idBase="login-email"
+              label="Email"
+              type="email"
               required
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
+            {!isLogin && (
+              <HeroInput
+                idBase="register-phone"
+                label="Phone Number"
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+            )}
             <HeroInput
-              idBase="login-otp"
-              label="OTP"
-              type="text"
-              maxLength={6}
-              value={otp}
-              onChange={(e) => setOtp(e.target.value)}
+              idBase="login-password"
+              label="Password"
+              type="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
+            {error ? <p className="text-danger text-sm text-center">{error}</p> : null}
             <button
               type="submit"
-              className="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap subpixel-antialiased overflow-hidden tap-highlight-transparent transform-gpu data-[pressed=true]:scale-[0.97] cursor-pointer outline-solid outline-transparent data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 min-w-24 h-12 gap-3 rounded-medium [&>svg]:max-w-[theme(spacing.8)] transition-transform-colors-opacity motion-reduce:transition-none bg-primary data-[hover=true]:opacity-hover text-white font-medium w-full"
+              disabled={submitting}
+              className={`${SUBMIT_BTN_CLASS}${submitting ? ' opacity-disabled pointer-events-none' : ''}`}
             >
-              Login
+              {submitting ? 'Please wait...' : isLogin ? 'Login' : 'Create Account'}
             </button>
+            <p className="text-gray-600 text-sm text-center">
+              {isLogin ? "Don't have an account? " : 'Already have an account? '}
+              <button
+                type="button"
+                className="text-primary font-medium cursor-pointer hover:opacity-hover"
+                onClick={switchMode}
+              >
+                {isLogin ? 'Create an account' : 'Login'}
+              </button>
+            </p>
           </form>
         </div>
       </div>

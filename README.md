@@ -23,4 +23,13 @@ npm run preview   # serve the production build
 - `public/css/` — compiled site stylesheets (Tailwind/HeroUI utilities)
 - `public/assets/` — images, documents, fonts
 
-Forms (contact, donate, login, volunteer) are UI-only — no backend is wired yet.
+## Backend
+
+`backend/` holds a FastAPI service (SQLite + JWT auth + Razorpay) powering login/register,
+profile with donation history, donation orders + payment verification, and the contact /
+volunteer forms. See `backend/README.md` for running it, switching Razorpay from mock to
+live keys, and deploying with nginx.
+
+The frontend reads the API base URL from `VITE_API_BASE` at build time
+(default `http://localhost:8787`). For the GitHub Pages deploy, set a repository
+variable `VITE_API_BASE` to the hosted backend URL.

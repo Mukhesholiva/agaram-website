@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { getToken } from '../lib/api.js';
 
 const NAV_LINK_BASE =
   'relative inline-flex items-center tap-highlight-transparent outline-solid outline-transparent data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-medium no-underline hover:opacity-hover active:opacity-disabled transition-opacity';
@@ -20,6 +21,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [joinOpen, setJoinOpen] = useState(false);
   const joinRef = useRef(null);
+  const loggedIn = !!getToken();
 
   const isActive = (to) =>
     to === '/' ? location.pathname === '/' : location.pathname === to;
@@ -169,11 +171,11 @@ export default function Navbar() {
             <Link
               className="tap-highlight-transparent no-underline hover:opacity-hover active:opacity-disabled z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap subpixel-antialiased overflow-hidden tap-highlight-transparent transform-gpu data-[pressed=true]:scale-[0.97] cursor-pointer outline-solid outline-transparent data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 border-medium gap-2 rounded-small [&>svg]:max-w-[theme(spacing.8)] transition-transform-colors-opacity motion-reduce:transition-none bg-transparent text-foreground data-[hover=true]:opacity-hover font-medium h-8 px-3 text-xs md:text-medium md:h-10 md:px-4 border-gray-300 min-w-0"
               data-react-aria-pressable="true"
-              to="/login"
+              to={loggedIn ? '/profile' : '/login'}
               tabIndex={0}
               role="button"
             >
-              Login
+              {loggedIn ? 'Profile' : 'Login'}
               <svg
                 stroke="currentColor"
                 fill="none"

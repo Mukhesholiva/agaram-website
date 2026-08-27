@@ -2,3 +2,9 @@ node_modules
 dist
 *.local
 .DS_Store
+
+# backend
+backend/data/
+backend/.env
+backend/.venv/
+__pycache__/

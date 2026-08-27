@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { api } from '../lib/api.js';
 
 export default function Contact() {
   useEffect(() => {
@@ -10,6 +11,30 @@ export default function Contact() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [agree, setAgree] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (submitting) return;
+    setError('');
+    setSuccess(false);
+    setSubmitting(true);
+    try {
+      await api('/api/contact', { method: 'POST', body: { name, phone, email, message } });
+      setSuccess(true);
+      setName('');
+      setPhone('');
+      setEmail('');
+      setMessage('');
+      setAgree(false);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <main className="flex-grow w-full overflow-x-hidden overflow-y-auto sm:pb-0 pb-16">
@@ -99,7 +124,7 @@ export default function Contact() {
             <div className="space-y-8">
               <div className="max-w-lg mx-auto p-6 rounded-2xl shadow-lg bg-white">
                 <h2 className="text-2xl font-semibold mb-6 text-center">General Enquiry</h2>
-                <form id="enquiry-form" className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+                <form id="enquiry-form" className="space-y-4" onSubmit={handleSubmit}>
                   <div className="group flex flex-col data-[hidden=true]:hidden w-full" data-slot="base" data-required="true" data-has-elements="true" data-has-label="true" data-has-value="true" data-filled={name ? 'true' : undefined} data-filled-within={name ? 'true' : undefined}>
                     <div data-slot="input-wrapper" className="relative w-full inline-flex tap-highlight-transparent shadow-xs px-3 bg-default-100 data-[hover=true]:bg-default-200 group-data-[focus=true]:bg-default-100 min-h-10 rounded-medium flex-col items-start justify-center gap-0 transition-background motion-reduce:transition-none !duration-150 outline-solid outline-transparent group-data-[focus-visible=true]:z-10 group-data-[focus-visible=true]:ring-2 group-data-[focus-visible=true]:ring-focus group-data-[focus-visible=true]:ring-offset-2 group-data-[focus-visible=true]:ring-offset-background h-14 py-2" style={{ cursor: 'text' }}>
                       <label data-slot="label" className="absolute z-10 pointer-events-none origin-top-left shrink-0 rtl:origin-top-right subpixel-antialiased block text-foreground-500 cursor-text after:content-['*'] after:text-danger after:ms-0.5 will-change-auto !duration-200 !ease-out motion-reduce:transition-none transition-[transform,color,left,opacity,translate,scale] group-data-[filled-within=true]:text-default-600 group-data-[filled-within=true]:pointer-events-auto group-data-[filled-within=true]:scale-85 text-small group-data-[filled-within=true]:-translate-y-[calc(50%_+_var(--heroui-font-size-small)/2_-_6px)] pe-2 max-w-full text-ellipsis overflow-hidden" id="react-aria-_R_1jalubsnldbH1_" htmlFor="react-aria-_R_1jalubsnldb_">Full Name</label>
@@ -141,7 +166,11 @@ export default function Contact() {
                     </span>
                     <span id="_R_5jalubsnldb_" className="relative text-foreground select-none text-medium transition-colors-opacity before:transition-width motion-reduce:transition-none">I agree to be contacted regarding my enquiry</span>
                   </label>
-                  <button type="submit" tabIndex={0} data-react-aria-pressable="true" className="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent transform-gpu data-[pressed=true]:scale-[0.97] cursor-pointer outline-solid outline-transparent data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 px-4 min-w-20 h-10 text-small gap-2 rounded-medium [&>svg]:max-w-[theme(spacing.8)] transition-transform-colors-opacity motion-reduce:transition-none bg-primary text-primary-foreground data-[hover=true]:opacity-hover w-full">Submit Enquiry</button>
+                  {success ? (
+                    <p className="text-green-600 text-sm text-center">Thank you! Your enquiry has been submitted. We will get back to you soon.</p>
+                  ) : null}
+                  {error ? <p className="text-danger text-sm text-center">{error}</p> : null}
+                  <button type="submit" tabIndex={0} disabled={submitting} data-react-aria-pressable="true" className={`z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent transform-gpu data-[pressed=true]:scale-[0.97] cursor-pointer outline-solid outline-transparent data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 px-4 min-w-20 h-10 text-small gap-2 rounded-medium [&>svg]:max-w-[theme(spacing.8)] transition-transform-colors-opacity motion-reduce:transition-none bg-primary text-primary-foreground data-[hover=true]:opacity-hover w-full${submitting ? ' opacity-disabled pointer-events-none' : ''}`}>{submitting ? 'Submitting...' : 'Submit Enquiry'}</button>
                 </form>
               </div>
               <div className="flex flex-col relative overflow-hidden h-auto text-foreground box-border bg-content1 outline-solid outline-transparent data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 rounded-large transition-transform-background motion-reduce:transition-none shadow-lg mx-auto max-w-lg" tabIndex={-1}>

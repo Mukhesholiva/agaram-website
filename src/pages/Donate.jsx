@@ -1,4 +1,35 @@
 import { useEffect, useState } from 'react';
+import { api } from '../lib/api.js';
+
+/* ------------------------------------------------------------------ */
+/* Razorpay checkout script loader (real mode only)                    */
+/* ------------------------------------------------------------------ */
+
+let razorpayScriptPromise = null;
+function loadRazorpayScript() {
+  if (window.Razorpay) return Promise.resolve();
+  if (!razorpayScriptPromise) {
+    razorpayScriptPromise = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+      script.onload = () => resolve();
+      script.onerror = () => {
+        razorpayScriptPromise = null;
+        reject(new Error('Could not load the payment gateway. Please try again.'));
+      };
+      document.body.appendChild(script);
+    });
+  }
+  return razorpayScriptPromise;
+}
+
+function formatReceiptDate(value) {
+  if (!value) return '';
+  // SQLite current_timestamp -> "YYYY-MM-DD HH:MM:SS" (UTC)
+  const d = new Date(String(value).includes('T') ? value : `${String(value).replace(' ', 'T')}Z`);
+  if (Number.isNaN(d.getTime())) return String(value);
+  return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+}
 
 /* ------------------------------------------------------------------ */
 /* Shared HeroUI class strings (verbatim from the site's compiled CSS) */
@@ -408,8 +439,17 @@ export default function Donate() {
 
   // Plan selection
   const [oneTimePlan, setOneTimePlan] = useState(null);
+  const [oneTimePlanTitle, setOneTimePlanTitle] = useState(null);
   const [oneTimeAmount, setOneTimeAmount] = useState('');
   const [monthlyPlan, setMonthlyPlan] = useState(null);
+  const [monthlyPlanTitle, setMonthlyPlanTitle] = useState(null);
+  const [monthlyAmount, setMonthlyAmount] = useState(0);
+
+  // Submission / payment state
+  const [submitting, setSubmitting] = useState(false);
+  const [formError, setFormError] = useState('');
+  const [receipt, setReceipt] = useState(null);
+  const [receiptWasMock, setReceiptWasMock] = useState(false);
 
   // Personal details (shared by One Time / Every Month)
   const [fullName, setFullName] = useState('');
@@ -440,12 +480,118 @@ export default function Donate() {
 
   const handleSelectOneTimePlan = (id, plan) => {
     setOneTimePlan(id);
+    setOneTimePlanTitle(plan.title);
     setOneTimeAmount(plan.price.replace(/[^\d]/g, ''));
   };
 
   const handleCustomAmount = (e) => {
     setOneTimeAmount(e.target.value);
     setOneTimePlan(null);
+    setOneTimePlanTitle(null);
+  };
+
+  const handleSelectMonthlyPlan = (id, plan) => {
+    setMonthlyPlan(id);
+    setMonthlyPlanTitle(plan.title);
+    setMonthlyAmount(Number(plan.price.replace(/[^\d]/g, '')) || 0);
+  };
+
+  const resetDonationFlow = () => {
+    setReceipt(null);
+    setReceiptWasMock(false);
+    setFormError('');
+    setOneTimePlan(null);
+    setOneTimePlanTitle(null);
+    setOneTimeAmount('');
+    setMonthlyPlan(null);
+    setMonthlyPlanTitle(null);
+    setMonthlyAmount(0);
+  };
+
+  const verifyPayment = async (payload) => {
+    const res = await api('/api/donations/verify', { method: 'POST', body: payload });
+    setReceipt(res.receipt);
+  };
+
+  const handleContinue = async () => {
+    if (submitting) return;
+    setFormError('');
+
+    const frequency = tab === 'monthly' ? 'monthly' : 'once';
+    const amount = tab === 'monthly' ? monthlyAmount : Math.floor(Number(oneTimeAmount));
+    const plan = tab === 'monthly' ? monthlyPlanTitle : oneTimePlanTitle;
+
+    if (!amount || amount <= 0) {
+      setFormError(
+        tab === 'monthly' ? 'Please select a donation plan.' : 'Please select a plan or enter a valid amount.'
+      );
+      return;
+    }
+    if (!fullName.trim() || !email.trim() || !mobile.trim()) {
+      setFormError('Please fill in your name, email and mobile number.');
+      return;
+    }
+
+    const donor = { name: fullName.trim(), email: email.trim(), phone: mobile.trim(), alumni: isAlumni };
+    if (pan.trim()) donor.pan = pan.trim();
+    if (address.trim()) donor.address = address.trim();
+    if (city.trim()) donor.city = city.trim();
+    if (stateName.trim()) donor.state = stateName.trim();
+    if (country.trim()) donor.country = country.trim();
+    if (pincode.trim()) donor.pincode = pincode.trim();
+
+    setSubmitting(true);
+    try {
+      const order = await api('/api/donations/order', {
+        method: 'POST',
+        auth: true,
+        body: { amount, frequency, plan: plan || null, donor },
+      });
+
+      if (order.keyId) {
+        // Real mode: open Razorpay checkout.
+        await loadRazorpayScript();
+        const rzp = new window.Razorpay({
+          key: order.keyId,
+          order_id: order.orderId,
+          amount: order.amount,
+          currency: order.currency,
+          name: 'Venkata Sivaji Charitable Foundation',
+          prefill: { name: donor.name, email: donor.email, contact: donor.phone },
+          handler: async (response) => {
+            try {
+              await verifyPayment({
+                donationId: order.donationId,
+                orderId: order.orderId,
+                paymentId: response.razorpay_payment_id,
+                signature: response.razorpay_signature,
+              });
+              setReceiptWasMock(false);
+            } catch (err) {
+              setFormError(err.message);
+            } finally {
+              setSubmitting(false);
+            }
+          },
+          modal: {
+            ondismiss: () => setSubmitting(false),
+          },
+        });
+        rzp.on('payment.failed', () => {
+          setFormError('Payment failed. Please try again.');
+          setSubmitting(false);
+        });
+        rzp.open();
+      } else {
+        // Mock mode: verify directly.
+        await verifyPayment({ donationId: order.donationId, orderId: order.orderId });
+        setReceiptWasMock(true);
+        setSubmitting(false);
+      }
+    } catch (err) {
+      setFormError(err.message);
+      setSubmitting(false);
+    }
   };
 
   const personalAndAddress = (
@@ -472,11 +618,91 @@ export default function Donate() {
           <HeroInput id="donate-pincode" label="Pincode" name="pincode" required value={pincode} onChange={(e) => setPincode(e.target.value)} />
         </div>
       </div>
+      {formError ? <p className="text-danger text-sm text-center">{formError}</p> : null}
       <div className="flex justify-center pt-2">
-        <button type="button" className={CONTINUE_BTN_CLS}>Continue</button>
+        <button
+          type="button"
+          disabled={submitting}
+          className={`${CONTINUE_BTN_CLS}${submitting ? ' opacity-disabled pointer-events-none' : ''}`}
+          onClick={handleContinue}
+        >
+          {submitting ? 'Processing...' : 'Continue'}
+        </button>
       </div>
     </>
   );
+
+  const thankYou = receipt ? (
+    <div
+      className="flex flex-col relative overflow-hidden h-auto text-foreground box-border bg-content1 outline-solid outline-transparent data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 rounded-large motion-reduce:transition-none shadow-lg bg-white"
+      tabIndex={-1}
+    >
+      <div className="relative flex w-full flex-auto flex-col place-content-inherit align-items-inherit h-auto break-words text-left overflow-y-auto subpixel-antialiased p-6 sm:p-8">
+        <div className="flex flex-col items-center text-center space-y-2 mb-6">
+          <div className="bg-green-100 p-3 rounded-full">
+            <svg
+              stroke="currentColor"
+              fill="none"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-green-600"
+              height="32"
+              width="32"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <h2 className="text-2xl font-bold text-gray-800">Thank You for Your Donation!</h2>
+          <p className="text-gray-600 text-sm">
+            Your contribution helps us educate, empower and elevate deserving students.
+          </p>
+        </div>
+        <div className="space-y-2 mb-6">
+          <div className="flex items-center justify-between py-2 border-b border-gray-100">
+            <span className="text-sm text-gray-600">Amount</span>
+            <span className="text-sm font-semibold text-gray-900">
+              ₹{Number(receipt.amount).toLocaleString('en-IN')}
+              {receipt.frequency === 'monthly' ? ' / month' : ''}
+            </span>
+          </div>
+          {receipt.plan ? (
+            <div className="flex items-center justify-between py-2 border-b border-gray-100">
+              <span className="text-sm text-gray-600">Plan</span>
+              <span className="text-sm font-medium text-gray-900">{receipt.plan}</span>
+            </div>
+          ) : null}
+          <div className="flex items-center justify-between py-2 border-b border-gray-100">
+            <span className="text-sm text-gray-600">Frequency</span>
+            <span className="text-sm font-medium text-gray-900">
+              {receipt.frequency === 'monthly' ? 'Every Month' : 'One Time'}
+            </span>
+          </div>
+          <div className="flex items-center justify-between py-2 border-b border-gray-100">
+            <span className="text-sm text-gray-600">Receipt No.</span>
+            <span className="text-sm font-medium text-gray-900">#{receipt.id}</span>
+          </div>
+          <div className="flex items-center justify-between py-2 border-b border-gray-100">
+            <span className="text-sm text-gray-600">Date</span>
+            <span className="text-sm font-medium text-gray-900">{formatReceiptDate(receipt.paidAt)}</span>
+          </div>
+        </div>
+        {receiptWasMock ? (
+          <p className="text-xs text-gray-500 text-center mb-4">
+            Test mode — payment gateway not configured yet
+          </p>
+        ) : null}
+        <div className="flex justify-center">
+          <button type="button" className={CONTINUE_BTN_CLS} onClick={resetDonationFlow}>
+            Make another donation
+          </button>
+        </div>
+      </div>
+    </div>
+  ) : null;
 
   return (
     <main className="flex-grow w-full overflow-x-hidden overflow-y-auto sm:pb-0 pb-16">
@@ -509,6 +735,8 @@ export default function Donate() {
             </div>
           </div>
           <div className="absolute right-0 top-0 h-full w-full md:w-[60%] xl:w-[62%] overflow-y-auto px-2 md:px-10 lg:px-12 py-10 space-y-6 bg-primary-100 pt-25">
+            {receipt ? thankYou : (
+            <>
             <div className="inline-flex w-full" data-slot="base">
               <div
                 data-slot="tabList"
@@ -566,7 +794,7 @@ export default function Donate() {
                 <p className="text-sm text-gray-600">
                   Empower underprivileged students through monthly donations. Fund tuition, food, hostel, and mentorship.
                 </p>
-                <PlanGroups groups={MONTHLY_GROUPS} selectedId={monthlyPlan} onSelect={(id) => setMonthlyPlan(id)} />
+                <PlanGroups groups={MONTHLY_GROUPS} selectedId={monthlyPlan} onSelect={handleSelectMonthlyPlan} />
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 mb-1">
                     <h3 className="text-sm font-semibold text-gray-800">Donation Duration</h3>
@@ -629,6 +857,8 @@ export default function Donate() {
                 </div>
               </div>
             ) : null}
+            </>
+            )}
           </div>
         </div>
       </div>

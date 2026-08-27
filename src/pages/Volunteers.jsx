@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { api, getToken } from '../lib/api.js';
 
 // ---- HeroUI class strings (verbatim from the reference HTML) ----
 
@@ -293,6 +295,7 @@ const VOLUNTEER_POINTS = [
 ];
 
 export default function Volunteers() {
+  const navigate = useNavigate();
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -307,10 +310,48 @@ export default function Volunteers() {
   const [experience, setExperience] = useState('');
   const [attendedTraining, setAttendedTraining] = useState(false);
   const [agreeTerms, setAgreeTerms] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     document.title = 'Agaram Foundation | Educate. Empower. Elevate.';
   }, []);
+
+  const handleSubmit = async () => {
+    if (submitting) return;
+    if (!getToken()) {
+      navigate('/login');
+      return;
+    }
+    setSubmitError('');
+    setSubmitted(false);
+    setSubmitting(true);
+    try {
+      const payload = {
+        name: fullName,
+        email,
+        phone,
+        countryCode,
+        country,
+        state: stateName,
+        city,
+        pincode,
+        addressLine,
+        hoursPerWeek,
+        skills,
+        experience,
+        attendedTraining,
+        agreeTerms,
+      };
+      await api('/api/volunteers', { method: 'POST', body: payload, auth: true });
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitError(err.message);
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   const requiredValues = [fullName, email, phone, country, stateName, city, pincode, addressLine, skills];
   const filledCount = requiredValues.filter((v) => v.trim() !== '').length + (agreeTerms ? 1 : 0);
@@ -689,14 +730,21 @@ export default function Volunteers() {
                           </div>
                         </div>
                         <div className="text-center">
+                          {submitted ? (
+                            <p className="text-green-600 text-sm mb-4">
+                              Thank you for registering as a volunteer! We will get back to you soon.
+                            </p>
+                          ) : null}
+                          {submitError ? <p className="text-danger text-sm mb-4">{submitError}</p> : null}
                           <button
                             type="button"
                             tabIndex={0}
+                            disabled={submitting}
                             data-react-aria-pressable="true"
-                            className="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap subpixel-antialiased overflow-hidden tap-highlight-transparent transform-gpu data-[pressed=true]:scale-[0.97] cursor-pointer outline-solid outline-transparent data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 min-w-24 h-12 gap-3 rounded-large [&>svg]:max-w-[theme(spacing.8)] motion-reduce:transition-none data-[hover=true]:opacity-hover bg-[#0891b2] text-white px-8 py-3 text-base font-medium hover:bg-[#0e7490] transition-colors"
-                            onClick={(e) => e.preventDefault()}
+                            className={`z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap subpixel-antialiased overflow-hidden tap-highlight-transparent transform-gpu data-[pressed=true]:scale-[0.97] cursor-pointer outline-solid outline-transparent data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 min-w-24 h-12 gap-3 rounded-large [&>svg]:max-w-[theme(spacing.8)] motion-reduce:transition-none data-[hover=true]:opacity-hover bg-[#0891b2] text-white px-8 py-3 text-base font-medium hover:bg-[#0e7490] transition-colors${submitting ? ' opacity-disabled pointer-events-none' : ''}`}
+                            onClick={handleSubmit}
                           >
-                            Log In &amp; Submit
+                            {submitting ? 'Submitting...' : 'Log In & Submit'}
                           </button>
                           <p className="text-sm text-gray-500 mt-4">
                             You'll be asked to log in before your registration is submitted
