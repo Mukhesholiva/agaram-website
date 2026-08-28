@@ -1,8 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
-
-const HERO_BUTTON_CLASS =
-  'tap-highlight-transparent no-underline hover:opacity-hover active:opacity-disabled z-0 group relative justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent transform-gpu data-[pressed=true]:scale-[0.97] cursor-pointer outline-solid outline-transparent data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 min-w-20 h-10 gap-2 [&>svg]:max-w-[theme(spacing.8)] transition-transform-colors-opacity motion-reduce:transition-none text-default-foreground data-[hover=true]:opacity-hover flex items-center px-3 py-3 sm:px-4 sm:py-5 rounded-lg text-sm sm:text-base bg-white/50 hover:bg-white'
 
 const SLIDES = [
   {
@@ -13,8 +9,6 @@ const SLIDES = [
     imageSrc: '/assets/images/slider/agaram_slider_img_1.webp',
     leftSubtitle: 'Extend the power of education to every corner of society.',
     rightSubtitle: 'Strive to bridge the gap between deserving students and quality education.',
-    leftButtons: [{ label: 'Our Mission', link: '/our_mission', external: false }],
-    rightButtons: [{ label: 'Donate Now', link: '/donate', external: false }],
   },
   {
     id: 'help-the-needy',
@@ -24,8 +18,6 @@ const SLIDES = [
     imageSrc: '/assets/images/slider/agaram_slider_img_2.webp',
     leftSubtitle: 'A helping hand at the right time can make all the difference.',
     rightSubtitle: 'Offering care, hope, and encouragement for a better tomorrow.',
-    leftButtons: [{ label: 'Join as Volunteer', link: '/join-us/volunteers', external: false }],
-    rightButtons: [{ label: 'Support Us', link: '/donate', external: false }],
   },
 ]
 
@@ -90,53 +82,6 @@ const FORCE_STATS = [
   { label: 'Resources', end: 100, suffix: '+' },
   { label: 'Corporates', end: 25, suffix: '+' },
 ]
-
-function ArrowIcon() {
-  return (
-    <svg
-      stroke="currentColor"
-      fill="none"
-      strokeWidth="2"
-      viewBox="0 0 24 24"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="ml-2"
-      height="1em"
-      width="1em"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M7 7h10v10"></path>
-      <path d="M7 17 17 7"></path>
-    </svg>
-  )
-}
-
-function HeroButton({ button }) {
-  if (button.external) {
-    return (
-      <a
-        className={HERO_BUTTON_CLASS}
-        data-react-aria-pressable="true"
-        href={button.link}
-        tabIndex={0}
-        role="button"
-      >
-        {button.label} <ArrowIcon />
-      </a>
-    )
-  }
-  return (
-    <Link
-      className={HERO_BUTTON_CLASS}
-      data-react-aria-pressable="true"
-      to={button.link}
-      tabIndex={0}
-      role="button"
-    >
-      {button.label} <ArrowIcon />
-    </Link>
-  )
-}
 
 function HeroSlider() {
   const [index, setIndex] = useState(0)
@@ -272,11 +217,6 @@ function HeroSlider() {
                           {slide.leftSubtitle}
                         </p>
                       </div>
-                      <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-                        {slide.leftButtons.map((button) => (
-                          <HeroButton key={button.label} button={button} />
-                        ))}
-                      </div>
                     </div>
                   </div>
                   <div className="w-full md:w-full lg:w-1/3 order-1 lg:order-2 flex justify-center items-center p-2">
@@ -305,11 +245,6 @@ function HeroSlider() {
                         <p className="text-base sm:text-lg md:text-xl tracking-wide">
                           {slide.rightSubtitle}
                         </p>
-                      </div>
-                      <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-                        {slide.rightButtons.map((button) => (
-                          <HeroButton key={button.label} button={button} />
-                        ))}
                       </div>
                     </div>
                   </div>
