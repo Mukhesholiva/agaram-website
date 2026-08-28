@@ -7,8 +7,8 @@ const HERO_BUTTON_CLASS =
 const SLIDES = [
   {
     id: 'moringa-superblend',
-    title: 'Transforming living',
-    subtitle: 'With Learn-for-all Access',
+    title: 'Little Act of Service',
+    subtitle: 'Can bring hope to someone’s life',
     background: 'linear-gradient(to top,#5cc9d7 0%,#9cdce5 33%,#c7eef1 66%,#ffffff 100%)',
     imageSrc: '/assets/images/slider/agaram_slider_img_1.webp',
     leftSubtitle: 'Extend the power of education to every corner of society.',
