@@ -19,7 +19,7 @@ const SLIDES = [
   {
     id: 'help-the-needy',
     title: 'Help The Needy',
-    subtitle: 'Supporting education, health care, and the welfare of the elderly',
+    subtitle: 'A dream should never be limited by circumstances',
     background: 'linear-gradient(to top,#5cc9d7 0%,#9cdce5 33%,#c7eef1 66%,#ffffff 100%)',
     imageSrc: '/assets/images/slider/agaram_slider_img_2.webp',
     leftSubtitle: 'A helping hand at the right time can make all the difference.',
