@@ -1,7 +1,8 @@
 // Small fetch wrapper + token helpers for the VSCF backend API.
 // See scratchpad/api-contract.md ("Frontend conventions").
 
-export const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8787';
+// '' means same-origin (frontend and API behind one nginx); unset means local dev.
+export const API_BASE = import.meta.env.VITE_API_BASE ?? 'http://localhost:8787';
 
 const TOKEN_KEY = 'vscf_token';
 
