@@ -448,15 +448,18 @@ export default function Home() {
         <div className="rounded-2xl overflow-hidden flex gap-20 flex-col md:flex-row items-stretch justify-between">
           <div className="p-6 flex flex-col justify-between w-full md:w-1/2 space-y-4 bg-white">
             <div className="space-y-2">
-              <h3 className="text-4xl font-semibold mb-4 text-secondary-500">Agaram Foundation</h3>
+              <h3 className="text-4xl font-semibold mb-4 text-secondary-500">
+                Venkata Sivaji Charitable Foundation
+              </h3>
               <p className="text-justify text-lg text-secondary-400">
-                India stands at a crossroads, racing ahead in science, technology, and
-                infrastructure, yet still held back by the weight of inequality. For millions, the
-                promise of the Right to Education remains words on paper, and entire communities are
-                left untouched by opportunity. At Agaram Foundation, we believe every child,
-                deserves the key that can unlock every door in life. We work hand in hand with
-                communities to break down barriers, kindle ambition, and make quality education not
-                a privilege, but a birthright.
+                In India, many deserving children and young people continue to face financial and
+                social barriers to education. Access to quality healthcare can also be difficult
+                for families who cannot easily afford medical treatment, while many elderly people
+                face loneliness, limited support, and difficulties in meeting their everyday needs.
+                Through our initiatives in education, health care, and the welfare of the elderly,
+                we work towards building compassionate communities. By doing our part, we hope to
+                be a small but meaningful part of India&apos;s journey towards a more equitable and
+                caring society.
               </p>
             </div>
           </div>
@@ -485,8 +488,9 @@ export default function Home() {
         <div className="flex flex-col items-center gap-6 text-center">
           <h2 className="text-3xl font-bold">Vision</h2>
           <p className="text-lg max-w-xl">
-            To bring about a significant positive change in the socio-economic status of the rural
-            society by offering quality education to the deserving individual.
+            We believe that a helping hand at the right time can make all the difference. Through
+            our small contribution, we strive to support those facing challenges in health and
+            education, offering care, hope, and encouragement for a better tomorrow.
           </p>
         </div>
       </section>
@@ -509,26 +513,21 @@ export default function Home() {
             </h3>
             <div className="text-base md:text-lg text-secondary-400 flex flex-col gap-3 pt-2 leading-relaxed">
               <p>
-                Our dream is simple: A society where everyone stands on equal ground. I call it
-                simple because something this fundamental should be, but the reality is far from it.
-                That’s why our fight is about more than good intentions; it’s about building a world
-                where fairness isn’t a privilege. Not because luck favoured them, but because
-                opportunity did. And the surest way we know to get there is through education.
+                Sometimes, all a young person needs is someone to believe in them.
                 <br />
                 <br />
-                Why education? Because it doesn’t just change a child’s report card, it changes
-                their horizon. It passes on the tools, the values, and the confidence to step into
-                the world on their terms. Give it to one child, and you set in motion a ripple, a
-                butterfly effect that shapes not just their life, but entire generations to come.
+                Across communities, there are students with the ability, determination, and dreams
+                to build a better future, but circumstances may prevent them from reaching their
+                full potential. Venkata Sivaji Charitable Foundation strives to be there for them —
+                with understanding, encouragement, guidance, and meaningful opportunities.
                 <br />
                 <br />
-                At Agaram, this is the heartbeat of our work. Not just handing out degrees, but
-                cultivating futures capable of carrying the weight of a fairer tomorrow for decades,
-                for lifetimes. And we are doing it shoulder-to-shoulder with volunteers,
-                well-wishers, and fellow dreamers, each adding their own thread to this fabric of
-                change in society. An equal society isn’t a finished portrait; we have added our
-                strokes, but the canvas still calls for many more hands, and that’s what we are
-                working to bring together.
+                We believe education can open doors, build confidence, strengthen families, and
+                create positive change that reaches far beyond one individual.
+                <br />
+                <br />
+                Together, we can give hope a chance, dreams a direction, and every student the
+                opportunity to move forward.
               </p>
             </div>
           </div>

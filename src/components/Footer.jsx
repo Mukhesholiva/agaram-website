@@ -56,7 +56,7 @@ export default function Footer() {
                   />
                 </div>
                 <p className="text-sm text-gray-400 leading-relaxed">
-                  To bring about a significant positive change in the socio-economic status of the rural society by offering quality education to the deserving individual.
+                  We believe that a helping hand at the right time can make all the difference. Through our small contribution, we strive to support those facing challenges in health and education, offering care, hope, and encouragement for a better tomorrow.
                 </p>
                 <a
                   className="relative inline-flex items-center tap-highlight-transparent outline-solid outline-transparent data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-medium text-primary no-underline hover:opacity-hover active:opacity-disabled transition-opacity"
