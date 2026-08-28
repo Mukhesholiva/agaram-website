@@ -12,8 +12,8 @@ const SLIDES = [
   },
   {
     id: 'help-the-needy',
-    title: 'Help The Needy',
-    subtitle: 'A dream should never be limited by circumstances',
+    title: 'A dream should never be limited by circumstances',
+    subtitle: '',
     background: 'linear-gradient(to top,#5cc9d7 0%,#9cdce5 33%,#c7eef1 66%,#ffffff 100%)',
     imageSrc: '/assets/images/slider/agaram_slider_img_2.webp',
     leftSubtitle: 'A helping hand at the right time can make all the difference.',
@@ -202,9 +202,11 @@ function HeroSlider() {
                   <h1 className="text-primary text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
                     {slide.title}
                   </h1>
-                  <h2 className="text-secondary text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium my-2 sm:my-3">
-                    {slide.subtitle}
-                  </h2>
+                  {slide.subtitle ? (
+                    <h2 className="text-secondary text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium my-2 sm:my-3">
+                      {slide.subtitle}
+                    </h2>
+                  ) : null}
                 </div>
                 <div className="flex flex-wrap items-center">
                   <div className="w-full md:w-1/2 lg:w-1/3 order-2 lg:order-1 flex flex-col justify-start items-center text-white p-3 md:mb-3 animated-nutrients">
