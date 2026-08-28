@@ -186,23 +186,7 @@ export default function Footer() {
                 </div>
               </div>
               <div>
-                <h6 className="text-lg font-semibold mb-3">Download Our App</h6>
-                <a
-                  href="https://play.google.com/store/apps/details?id=com.agaramfoundation.app&pcampaignid=web_share"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <div className="relative shadow-black/5 shadow-none rounded-large" style={{ maxWidth: 'fit-content' }}>
-                    {' '}
-                    <img
-                      src="/assets/images/logo/playstore.webp"
-                      className="relative z-10 opacity-0 shadow-black/5 data-[loaded=true]:opacity-100 shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-sm w-35"
-                      alt="Playstore"
-                      data-loaded="true"
-                    />
-                  </div>
-                </a>
-                <h6 className="mt-6 text-lg font-semibold mb-3">Support</h6>
+                <h6 className="text-lg font-semibold mb-3">Support</h6>
                 <ul className="space-y-2 text-gray-400">
                   <a
                     className="relative tap-highlight-transparent outline-solid outline-transparent data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-medium no-underline hover:opacity-hover active:opacity-disabled transition-opacity flex items-center text-gray-400 hover:text-gray-200"

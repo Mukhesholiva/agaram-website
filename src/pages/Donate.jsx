@@ -605,7 +605,7 @@ export default function Donate() {
           <HeroInput id="donate-pan" label="PAN Card" name="pan" value={pan} onChange={(e) => setPan(e.target.value)} />
         </div>
         <HeroCheckbox labelId="donate-alumni-label" checked={isAlumni} onChange={(e) => setIsAlumni(e.target.checked)}>
-          Are you an Agaram Alumni?
+          Have you been supported by our foundation before?
         </HeroCheckbox>
       </div>
       <div className="space-y-4">

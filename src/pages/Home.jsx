@@ -17,21 +17,15 @@ const SLIDES = [
     rightButtons: [{ label: 'Donate Now', link: '/donate', external: false }],
   },
   {
-    id: 'app-launch',
-    title: 'Presenting Our New App',
-    subtitle: 'Now Available on Play Store',
+    id: 'help-the-needy',
+    title: 'Help The Needy',
+    subtitle: 'Supporting education, health care, and the welfare of the elderly',
     background: 'linear-gradient(to top,#5cc9d7 0%,#9cdce5 33%,#c7eef1 66%,#ffffff 100%)',
     imageSrc: '/assets/images/slider/agaram_slider_img_2.webp',
-    leftSubtitle: 'Download our app to empower education with just a tap.',
-    rightSubtitle: 'Strive to bridge the gap between deserving students and quality education.',
-    leftButtons: [
-      {
-        label: 'Download App',
-        link: 'https://play.google.com/store/apps/details?id=com.agaramfoundation.app&pcampaignid=web_share',
-        external: true,
-      },
-    ],
-    rightButtons: [{ label: 'Support Students', link: '/donate', external: false }],
+    leftSubtitle: 'A helping hand at the right time can make all the difference.',
+    rightSubtitle: 'Offering care, hope, and encouragement for a better tomorrow.',
+    leftButtons: [{ label: 'Join as Volunteer', link: '/join-us/volunteers', external: false }],
+    rightButtons: [{ label: 'Support Us', link: '/donate', external: false }],
   },
 ]
 
@@ -223,7 +217,7 @@ function HeroSlider() {
   }, [index])
 
   return (
-    <div className="relative">
+    <div className="relative" style={{ width: '100%', maxWidth: '100%', overflow: 'hidden' }}>
       <canvas
         id="particle-bg"
         ref={canvasRef}
@@ -231,7 +225,11 @@ function HeroSlider() {
         aria-hidden="true"
         style={{ pointerEvents: 'none' }}
       ></canvas>
-      <div className="swiper swiper-initialized swiper-horizontal" ref={sliderRef}>
+      <div
+        className="swiper swiper-initialized swiper-horizontal"
+        ref={sliderRef}
+        style={{ width: '100%' }}
+      >
         <div
           className="swiper-wrapper"
           style={{
@@ -249,6 +247,9 @@ function HeroSlider() {
                 justifyContent: 'center',
                 alignItems: 'center',
                 color: '#fff',
+                width: '100%',
+                minWidth: 0,
+                flexShrink: 0,
               }}
             >
               <div className="flex flex-col w-full">
@@ -280,13 +281,16 @@ function HeroSlider() {
                   </div>
                   <div className="w-full md:w-full lg:w-1/3 order-1 lg:order-2 flex justify-center items-center p-2">
                     <div className="p-2 sm:p-4 text-white text-center">
-                      <div className="flex justify-center items-center w-[400px] h-[400px] mx-auto">
+                      <div
+                        className="flex justify-center items-center mx-auto"
+                        style={{ width: 'min(400px, 100%)', height: 'min(400px, 62vw)' }}
+                      >
                         <img
                           alt={`${slide.title} image`}
                           width="900"
                           height="900"
                           className="animated-img object-contain"
-                          style={{ color: 'transparent' }}
+                          style={{ color: 'transparent', maxWidth: '100%', maxHeight: '100%' }}
                           src={slide.imageSrc}
                         />
                       </div>
@@ -610,7 +614,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto text-center mb-10">
           <h1 className="text-4xl md:text-4xl font-medium">Agaram Achievers</h1>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
           {ACHIEVERS.map((achiever) => (
             <div
               key={achiever.label}

@@ -69,5 +69,12 @@ export async function api(path, { method = 'GET', body, auth = false } = {}) {
     err.status = res.status;
     throw err;
   }
+  if (data === null || typeof data !== 'object') {
+    // 2xx but not a JSON object — the API isn't actually behind this origin
+    // (e.g. an SPA fallback served index.html). Treat as unreachable.
+    const err = new Error('Cannot reach server. Please check your connection and try again.');
+    err.status = 0;
+    throw err;
+  }
   return data;
 }
