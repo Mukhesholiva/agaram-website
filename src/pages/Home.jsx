@@ -42,15 +42,15 @@ const INITIATIVES = [
     image: '/assets/images/programs/agaram_hostel.jpg',
   },
   {
-    title: 'Nammadhu Palli Fellowship',
+    title: 'Community Outreach',
     description:
-      "Launched in 2022, this program places young changemakers in rural government schools to boost learning, cut dropouts, and engage communities. With 50 fellows in 49 schools, it's turning classrooms into engines of lasting change.",
+      'We bring our communities together through outreach programmes, awareness drives, and support camps — reaching families in villages and towns with help, information, and hope. Every gathering strengthens the bond between the foundation and the people we serve.',
     image: '/assets/images/programs/namadhu_palli.jpg',
   },
   {
-    title: 'Sivakumar Educational Trust',
+    title: 'Orphan Support',
     description:
-      'Established by actor Sivakumar, this 47-year legacy laid the foundation for Agaram. It continues to support students through scholarships, awards, and a deep belief that education changes everything quietly, steadily, for the long term.',
+      'We care for orphaned and street children by providing clothes, food, and daily essentials, along with the warmth of belonging. Every child deserves to feel loved and looked after — and we strive to be that family for them.',
     image: '/assets/images/programs/sivakumar_edu_trust.jpg',
   },
 ]
