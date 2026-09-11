@@ -3,10 +3,10 @@ import { useEffect, useRef, useState } from 'react'
 const SLIDES = [
   {
     id: 'moringa-superblend',
-    title: 'Little Act of Service',
+    title: 'Empowering Lives Through Serving',
     subtitle: 'Can bring hope to someone’s life',
     background: 'linear-gradient(to top,#5cc9d7 0%,#9cdce5 33%,#c7eef1 66%,#ffffff 100%)',
-    imageSrc: '/assets/images/slider/agaram_slider_img_2.webp',
+    imageSrc: '/assets/images/slider/founder_cutout.webp',
     leftSubtitle: 'Extend the power of education to every corner of society.',
     rightSubtitle: 'Strive to bridge the gap between deserving students and quality education.',
   },
