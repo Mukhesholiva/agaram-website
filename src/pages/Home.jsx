@@ -55,35 +55,6 @@ const INITIATIVES = [
   },
 ]
 
-const ACHIEVERS = [
-  { label: 'Doctors', value: '70+', image: '/assets/images/achievers/doctors-min.png' },
-  { label: 'Engineers', value: '1750+', image: '/assets/images/achievers/engineers-min.png' },
-  { label: 'Paramedics', value: '700+', image: '/assets/images/achievers/paramedics-min.png' },
-  { label: 'Diploma', value: '350+', image: '/assets/images/achievers/diploma-min.png' },
-  { label: 'Arts & Science', value: '3320+', image: '/assets/images/achievers/arts-science-min.png' },
-  {
-    label: 'Others Professionals',
-    value: '105+',
-    image: '/assets/images/achievers/professional-courses-min.png',
-  },
-]
-
-const VIDEOS = [
-  { src: 'https://www.youtube.com/embed/F6YtHAZ2uR4', title: 'YouTube video 1' },
-  { src: 'https://www.youtube.com/embed/WUfT9elbI-k', title: 'YouTube video 2' },
-  { src: 'https://www.youtube.com/embed/PvS_7NPg3GY', title: 'YouTube video 3' },
-  { src: 'https://www.youtube.com/embed/_wsqNLUy3eM', title: 'YouTube video 4' },
-]
-
-const FORCE_STATS = [
-  { label: 'Years', end: 15, suffix: '+' },
-  { label: 'Donors', end: 10000, suffix: 'K+' },
-  { label: 'Volunteers', end: 1000, suffix: 'K+' },
-  { label: 'Institutions', end: 35, suffix: '+' },
-  { label: 'Resources', end: 100, suffix: '+' },
-  { label: 'Corporates', end: 25, suffix: '+' },
-]
-
 function HeroSlider() {
   const [index, setIndex] = useState(0)
   const canvasRef = useRef(null)
@@ -308,82 +279,6 @@ function FadeIn({ as: Tag = 'div', className, from, duration, delay = 0, ease = 
   )
 }
 
-function Counter({ label, end, suffix, inView }) {
-  const [value, setValue] = useState(0)
-  useEffect(() => {
-    if (!inView) return
-    let raf = null
-    let start = null
-    const duration = 2000
-    const tick = (now) => {
-      if (start === null) start = now
-      const progress = Math.min((now - start) / duration, 1)
-      const eased = 1 - Math.pow(1 - progress, 3)
-      setValue(end * eased)
-      if (progress < 1) raf = requestAnimationFrame(tick)
-    }
-    raf = requestAnimationFrame(tick)
-    return () => {
-      if (raf !== null) cancelAnimationFrame(raf)
-    }
-  }, [inView, end])
-  const floored = Math.floor(value)
-  const display =
-    suffix === 'K+'
-      ? `${Math.round(floored / 1000)}K+`
-      : suffix === '+'
-        ? `${floored}+`
-        : floored.toLocaleString()
-  return (
-    <div className="flex flex-col items-center px-4">
-      <span className="text-5xl sm:text-6xl font-extrabold text-primary-500 leading-tight">
-        {display}
-      </span>
-      <span className="mt-2 text-sm sm:text-base text-gray-700 tracking-wide text-center uppercase font-medium">
-        {label}
-      </span>
-    </div>
-  )
-}
-
-function ForceBehind() {
-  const sectionRef = useRef(null)
-  const [inView, setInView] = useState(false)
-  useEffect(() => {
-    const el = sectionRef.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.2 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-  return (
-    <section ref={sectionRef} className="w-full bg-primary-50 py-20 px-4 md:px-8">
-      <div className="mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-16">The Force Behind</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-y-14 gap-x-6">
-          {FORCE_STATS.map((stat) => (
-            <Counter
-              key={stat.label}
-              label={stat.label}
-              end={stat.end}
-              suffix={stat.suffix}
-              inView={inView}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 export default function Home() {
   useEffect(() => {
     document.title = 'Agaram Foundation | Educate. Empower. Elevate.'
@@ -396,7 +291,7 @@ export default function Home() {
         <div className="rounded-2xl overflow-hidden flex gap-20 flex-col md:flex-row items-stretch justify-between">
           <div className="p-6 flex flex-col justify-between w-full md:w-1/2 space-y-4 bg-white">
             <div className="space-y-2">
-              <h3 className="text-4xl font-semibold mb-4 text-secondary-500">
+              <h3 className="text-4xl font-semibold mb-4 text-primary">
                 Venkata Sivaji Charitable Foundation
               </h3>
               <p className="text-justify text-lg text-secondary-400">
@@ -535,6 +430,7 @@ export default function Home() {
                         top: 0,
                         right: 0,
                         bottom: 0,
+                        objectPosition: 'center top',
                         color: 'transparent',
                       }}
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -554,59 +450,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div className="bg-gray-50 py-10 px-5">
-        <div className="max-w-6xl mx-auto text-center mb-10">
-          <h1 className="text-4xl md:text-4xl font-medium">Agaram Achievers</h1>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
-          {ACHIEVERS.map((achiever) => (
-            <div
-              key={achiever.label}
-              className="relative overflow-hidden h-auto text-foreground box-border bg-content1 outline-solid outline-transparent data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 rounded-large data-[hover=true]:bg-content2 dark:data-[hover=true]:bg-content2 motion-reduce:transition-none flex flex-col items-center justify-center p-6 text-center shadow-sm hover:-translate-y-1 transition"
-              tabIndex={-1}
-              style={{
-                backgroundColor: 'rgba(0, 171, 192, 0.08)',
-                borderColor: 'rgba(0, 171, 192, 0.15)',
-              }}
-            >
-              <img
-                alt={achiever.label}
-                loading="lazy"
-                width="120"
-                height="120"
-                className="object-contain mb-4"
-                style={{ color: 'transparent' }}
-                src={achiever.image}
-              />
-              <p className="text-4xl font-semibold text-primary">{achiever.value}</p>
-              <p className="text-xl text-secondary-600 font-semibold">{achiever.label}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-      <section className="py-12 px-4 bg-white">
-        <h2 className="text-4xl font-semibold text-center mb-8 text-gray-800">
-          The Face of Change
-        </h2>
-        <div className="flex flex-wrap justify-center gap-6 px-4">
-          {VIDEOS.map((video) => (
-            <div
-              key={video.src}
-              className="w-full max-w-sm rounded-md overflow-hidden shadow-lg bg-white"
-            >
-              <iframe
-                className="w-full h-60 md:h-72"
-                src={video.src}
-                title={video.title}
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-          ))}
-        </div>
-      </section>
-      <ForceBehind />
     </main>
   )
 }

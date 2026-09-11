@@ -78,15 +78,14 @@ export default function Navbar() {
             data-react-aria-pressable="true"
             role="link"
           >
-            <div className="relative shadow-black/5 shadow-none rounded-large" style={{ maxWidth: '50px' }}>
+            <div className="relative shadow-black/5 shadow-none rounded-large" style={{ maxWidth: '72px' }}>
               {' '}
               <img
                 src="/assets/images/logo/agaram_logo.png"
                 className="relative z-10 opacity-0 shadow-black/5 data-[loaded=true]:opacity-100 shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-large object-contain md:h-[60px] md:w-[60px]"
-                height="50"
-                width="50"
-                alt="Agaram Logo"
-                style={{ height: '50px', width: '50px', minWidth: '50px' }}
+                height="72"
+                width="72"
+                alt="Venkata Sivaji Charitable Foundation Logo"
                 data-loaded="true"
               />
             </div>

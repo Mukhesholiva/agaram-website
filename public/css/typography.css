@@ -73,3 +73,18 @@ h3 {
   font-family: 'Lora', Georgia, 'Times New Roman', serif;
   letter-spacing: -0.01em;
 }
+
+/* Navbar logo: fits the 64px mobile bar, larger on desktop */
+nav img[src*='agaram_logo'] {
+  height: 56px;
+  width: 56px;
+  min-width: 56px;
+  object-fit: contain;
+}
+@media (min-width: 768px) {
+  nav img[src*='agaram_logo'] {
+    height: 72px;
+    width: 72px;
+    min-width: 72px;
+  }
+}
