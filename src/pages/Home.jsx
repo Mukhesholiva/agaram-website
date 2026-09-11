@@ -36,9 +36,9 @@ const INITIATIVES = [
     image: '/assets/images/programs/mentorship.jpg',
   },
   {
-    title: 'Agaram Hostels',
+    title: 'Disability Support',
     description:
-      'More than a roof over their heads, Agaram Hostels give every student a holistic learning environment fostering independence, adaptability, and growth beyond the classroom.',
+      'We stand beside persons with disabilities and their families, offering financial assistance, care, and encouragement. Our support helps them meet everyday needs with dignity and reminds them that they are valued members of our community.',
     image: '/assets/images/programs/agaram_hostel.jpg',
   },
   {
