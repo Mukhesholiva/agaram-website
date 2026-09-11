@@ -30,9 +30,9 @@ const INITIATIVES = [
     image: '/assets/images/programs/vidhai.jpg',
   },
   {
-    title: 'Agaram Mentorship',
+    title: 'Supporting Education',
     description:
-      'Mentors form the backbone of Agaram. Through regular one-on-one interactions, they help students make sense of challenges, choices, and next steps, offering not just advice but presence.',
+      'We provide notebooks, books, and study materials to students who cannot afford them, so that no child has to pause their education for want of basics. Every kit we hand over is a step towards keeping a young person in school and their dreams on track.',
     image: '/assets/images/programs/mentorship.jpg',
   },
   {
