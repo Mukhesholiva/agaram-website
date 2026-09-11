@@ -24,9 +24,9 @@ const SLIDES = [
 
 const INITIATIVES = [
   {
-    title: 'Vidhai',
+    title: 'Food Necessities',
     description:
-      "The Vidhai programme supports first-generation learners through college by offering tuition aid, mentorship, and continuous guidance. It doesn't stop at admission; it stays with the student until they are ready to stand on their own.",
+      'We distribute basic food essentials to underprivileged families and the elderly in our communities. A small bag of groceries at the right time brings relief, dignity, and hope to a household in need — ensuring no one is left to face hardship alone.',
     image: '/assets/images/programs/vidhai.jpg',
   },
   {
