@@ -81,7 +81,7 @@ export default function Contact() {
                       </div>
                       <div>
                         <h3 className="text-lg font-semibold text-gray-800 mb-2">Email Us</h3>
-                        <a className="relative inline-flex items-center tap-highlight-transparent outline-solid outline-transparent data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 no-underline hover:opacity-hover active:opacity-disabled text-blue-600 hover:text-blue-800 transition-colors duration-200 text-lg" href="mailto:info@agaram.in" tabIndex={0} data-react-aria-pressable="true" role="link">info@agaram.in</a>
+                        <a className="relative inline-flex items-center tap-highlight-transparent outline-solid outline-transparent data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 no-underline hover:opacity-hover active:opacity-disabled text-blue-600 hover:text-blue-800 transition-colors duration-200 text-lg" href="mailto:helpinghands1089@gmail.com" tabIndex={0} data-react-aria-pressable="true" role="link">helpinghands1089@gmail.com</a>
                       </div>
                     </div>
                   </div>

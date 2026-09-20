@@ -190,7 +190,7 @@ export default function Footer() {
                 <ul className="space-y-2 text-gray-400">
                   <a
                     className="relative tap-highlight-transparent outline-solid outline-transparent data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-medium no-underline hover:opacity-hover active:opacity-disabled transition-opacity flex items-center text-gray-400 hover:text-gray-200"
-                    href="mailto:info@agaram.in"
+                    href="mailto:helpinghands1089@gmail.com"
                     tabIndex={0}
                     data-react-aria-pressable="true"
                     role="link"
@@ -207,7 +207,7 @@ export default function Footer() {
                     >
                       <path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"></path>
                     </svg>{' '}
-                    info@agaram.in
+                    helpinghands1089@gmail.com
                   </a>
                   <a
                     className="relative tap-highlight-transparent outline-solid outline-transparent data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-medium no-underline hover:opacity-hover active:opacity-disabled transition-opacity flex items-center text-gray-400 hover:text-gray-200"
