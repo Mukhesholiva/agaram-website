@@ -432,7 +432,7 @@ function PlanGroups({ groups, selectedId, onSelect }) {
 
 export default function Donate() {
   useEffect(() => {
-    document.title = 'Donate | Agaram Foundation';
+    document.title = 'Donate | Venkata Sivaji Charitable Foundation';
   }, []);
 
   const [tab, setTab] = useState('one-time');
@@ -711,7 +711,7 @@ export default function Donate() {
           <div className="hidden md:flex fixed top-0 left-0 h-screen md:w-[40%] xl:w-[38%] flex-col items-center justify-between p-6 pt-24 bg-[linear-gradient(-45deg,#ffffff,#00A9B6,#ccf8ff,#00A9B6,#ffffff)] bg-[length:400%_400%] animate-waterFlow">
             <div className="w-full flex justify-center pt-4">
               <div className="relative shadow-black/5 shadow-none rounded-large" style={{ maxWidth: '100px' }}>
-                <img src="/assets/images/logo/agaram_logo.webp" className="relative z-10 opacity-0 shadow-black/5 data-[loaded=true]:opacity-100 shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-large" alt="Agaram Foundation Logo" width="100" height="80" style={{ height: '80px' }} data-loaded="true" />
+                <img src="/assets/images/logo/agaram_logo.webp" className="relative z-10 opacity-0 shadow-black/5 data-[loaded=true]:opacity-100 shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-large" alt="Venkata Sivaji Charitable Foundation Logo" width="100" height="80" style={{ height: '80px' }} data-loaded="true" />
               </div>
             </div>
             <div className="text-center px-4">

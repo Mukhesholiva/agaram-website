@@ -12,7 +12,7 @@ const IMPACT_TEXT =
 
 export default function OurMission() {
   useEffect(() => {
-    document.title = 'Our Mission | Agaram Foundation'
+    document.title = 'Our Mission | Venkata Sivaji Charitable Foundation'
   }, [])
 
   return (

@@ -56,7 +56,7 @@ export default function Profile() {
   const [donations, setDonations] = useState([]);
 
   useEffect(() => {
-    document.title = 'Profile | Agaram Foundation';
+    document.title = 'Profile | Venkata Sivaji Charitable Foundation';
   }, []);
 
   useEffect(() => {

@@ -46,7 +46,7 @@ export default function Partners() {
   const [activeTab, setActiveTab] = useState('All')
 
   useEffect(() => {
-    document.title = 'Our Partners | Agaram Foundation'
+    document.title = 'Our Partners | Venkata Sivaji Charitable Foundation'
   }, [])
 
   const visible = activeTab === 'All' ? PARTNERS : PARTNERS.filter((p) => p.category === activeTab)

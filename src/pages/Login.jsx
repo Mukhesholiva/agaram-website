@@ -91,7 +91,7 @@ export default function Login() {
   const isLogin = mode === 'login';
 
   useEffect(() => {
-    document.title = 'Login | Agaram Foundation';
+    document.title = 'Login | Venkata Sivaji Charitable Foundation';
   }, []);
 
   // Already logged in -> straight to profile.

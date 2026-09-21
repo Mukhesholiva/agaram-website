@@ -51,7 +51,7 @@ export default function Footer() {
                   <img
                     src="/assets/images/logo/agaram_logo.webp"
                     className="relative z-10 opacity-0 shadow-black/5 data-[loaded=true]:opacity-100 shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-sm mb-4 w-28"
-                    alt="Agaram Foundation"
+                    alt="Venkata Sivaji Charitable Foundation"
                     data-loaded="true"
                   />
                 </div>
@@ -108,27 +108,6 @@ export default function Footer() {
                     </Link>
                   ))}
                 </ul>
-                <h6 className="mt-6 text-lg font-semibold">Our Websites</h6>
-                <div className="flex space-x-4 mt-4">
-                  <div className="relative shadow-black/5 shadow-none rounded-large" style={{ maxWidth: 'fit-content' }}>
-                    {' '}
-                    <img
-                      src="/assets/images/logo/agaram_foundation_org.webp"
-                      className="relative z-10 opacity-0 shadow-black/5 data-[loaded=true]:opacity-100 shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-sm w-30"
-                      alt="agaramfoundation.org"
-                      data-loaded="true"
-                    />
-                  </div>
-                  <div className="relative shadow-black/5 shadow-none rounded-large" style={{ maxWidth: 'fit-content' }}>
-                    {' '}
-                    <img
-                      src="/assets/images/logo/agaram_alumni_association.webp"
-                      className="relative z-10 opacity-0 shadow-black/5 data-[loaded=true]:opacity-100 shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-sm w-30"
-                      alt="alumni.agaram.in"
-                      data-loaded="true"
-                    />
-                  </div>
-                </div>
               </div>
               <div>
                 <h6 className="text-lg font-semibold mb-3">Important Links</h6>
@@ -365,40 +344,15 @@ export default function Footer() {
               Copyright © 2026{' '}
               <a
                 className="relative inline-flex items-center tap-highlight-transparent outline-solid outline-transparent data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-medium no-underline hover:opacity-hover active:opacity-disabled transition-opacity text-white"
-                href="https://agaram.in"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="https://venkatashivajifoundation.in"
                 tabIndex={0}
                 data-react-aria-pressable="true"
                 role="link"
               >
-                <small>Agaram Foundation</small>
+                <small>Venkata Sivaji Charitable Foundation</small>
               </a>
               . All Rights Reserved.
             </small>
-            <div className="flex items-center justify-center mt-3 md:mt-0">
-              <small className="text-xs md:text-sm tracking-wide text-gray-300">Designed & Developed by</small>
-              <a
-                className="relative tap-highlight-transparent outline-solid outline-transparent data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-medium text-primary no-underline hover:opacity-hover active:opacity-disabled transition-opacity flex items-center group"
-                href="https://www.antcorptech.in/"
-                target="_blank"
-                rel="noopener noreferrer"
-                tabIndex={0}
-                data-react-aria-pressable="true"
-                role="link"
-              >
-                <div className="relative shadow-black/5 shadow-none rounded-large" style={{ maxWidth: '100px' }}>
-                  {' '}
-                  <img
-                    src="/assets/images/logo/antcorp_technologies.webp"
-                    className="relative z-10 opacity-0 shadow-black/5 data-[loaded=true]:opacity-100 shadow-none motion-reduce:transition-none !duration-300 rounded-large transition-transform duration-300 group-hover:scale-110"
-                    alt="Antcorp Technologies"
-                    width="100"
-                    data-loaded="true"
-                  />
-                </div>
-              </a>
-            </div>
           </div>
         </footer>
       )}

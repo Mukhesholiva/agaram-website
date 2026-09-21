@@ -3,7 +3,7 @@ import { api } from '../lib/api.js';
 
 export default function Contact() {
   useEffect(() => {
-    document.title = 'Contact Us | Agaram Foundation';
+    document.title = 'Contact Us | Venkata Sivaji Charitable Foundation';
   }, []);
 
   const [name, setName] = useState('');
@@ -42,7 +42,7 @@ export default function Contact() {
         <div className="bg-secondary-900 text-white py-16">
           <div className="max-w-7xl mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">Get in touch with Agaram Foundation. We're here to help educate children and change lives.</p>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">Get in touch with Venkata Sivaji Charitable Foundation. We're here to help those in need and change lives.</p>
             <div style={{ fontFamily: '"Caveat", cursive' }} className="text-primary text-4xl mt-4">#change<span className="text-white">a</span>life</div>
           </div>
         </div>

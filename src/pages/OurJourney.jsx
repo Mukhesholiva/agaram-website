@@ -267,7 +267,7 @@ export default function OurJourney() {
   const columnRefs = useRef([])
 
   useEffect(() => {
-    document.title = 'Our Journey | Agaram Foundation'
+    document.title = 'Our Journey | Venkata Sivaji Charitable Foundation'
   }, [])
 
   useEffect(() => {
@@ -331,7 +331,7 @@ export default function OurJourney() {
           <div className="relative z-10 max-w-3xl w-full text-center text-white space-y-6 py-10 sm:py-16">
             <h1 className="text-white text-3xl sm:text-4xl lg:text-5xl font-bold">Our Journey</h1>
             <p className="text-white text-base sm:text-lg lg:text-xl">
-              From humble beginnings to transformational milestones, follow Agaram Foundation&apos;s journey of
+              From humble beginnings to transformational milestones, follow Venkata Sivaji Charitable Foundation&apos;s journey of
               empowering students through education.
             </p>
           </div>

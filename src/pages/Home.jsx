@@ -281,7 +281,7 @@ function FadeIn({ as: Tag = 'div', className, from, duration, delay = 0, ease = 
 
 export default function Home() {
   useEffect(() => {
-    document.title = 'Agaram Foundation | Educate. Empower. Elevate.'
+    document.title = 'Venkata Sivaji Charitable Foundation | Help The Needy'
   }, [])
 
   return (
@@ -308,7 +308,7 @@ export default function Home() {
           </div>
           <div className="relative w-full md:w-1/2 h-[240px] md:h-auto">
             <img
-              alt="Agaram Foundation"
+              alt="Venkata Sivaji Charitable Foundation"
               loading="lazy"
               className="object-cover rounded-xl md:rounded-none md:rounded-l-2xl"
               style={{
