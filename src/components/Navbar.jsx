@@ -12,7 +12,6 @@ const MENU_ITEMS = [
   { label: 'Home', to: '/' },
   { label: 'Our Mission', to: '/our_mission' },
   { label: 'Our Journey', to: '/our_journey' },
-  { label: 'Financials', to: '/financials' },
   { label: 'Partners', to: '/partners' },
 ];
 
@@ -196,7 +195,10 @@ export default function Navbar() {
         </ul>
       </header>
       {menuOpen && (
-        <div className="lg:hidden fixed top-16 inset-x-0 bottom-0 z-30 bg-white px-6 pt-2 overflow-y-auto">
+        <div
+          className="lg:hidden absolute inset-x-0 z-30 bg-white px-6 pt-2 pb-4 overflow-y-auto shadow-lg border-t border-divider"
+          style={{ top: '100%', maxHeight: 'calc(100vh - 4rem)' }}
+        >
           <ul className="flex flex-col gap-2">
             {MENU_ITEMS.map((item) => (
               <li key={item.to} className="text-large data-[active=true]:font-semibold" data-active={isActive(item.to) ? 'true' : 'false'}>

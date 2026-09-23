@@ -8,7 +8,7 @@ const QUICK_LINKS = [
   { label: 'Home', to: '/' },
   { label: 'Our Mission', to: '/our_mission' },
   { label: 'Our Journey', to: '/our_journey' },
-  { label: 'Financials', to: '/financials' },
+  { label: 'Contact', to: '/contact' },
   { label: 'Partners', to: '/partners' },
 ];
 
@@ -28,7 +28,7 @@ export default function Footer() {
 
   const homeActive = pathname === '/';
   const volunteerActive = pathname.startsWith('/join-us');
-  const financialsActive = pathname === '/financials';
+  const financialsActive = pathname === '/contact';
   const profileActive = pathname === '/profile' || pathname === '/login';
   const loggedIn = !!getToken();
 
@@ -421,7 +421,7 @@ export default function Footer() {
             </span>
             <span className="text-[11px] font-semibold text-primary -mt-4">Donate</span>
           </Link>
-          <Link className="flex flex-col items-center flex-1 pb-3 pt-2 gap-1" to="/financials">
+          <Link className="flex flex-col items-center flex-1 pb-3 pt-2 gap-1" to="/contact">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="22"
@@ -432,14 +432,12 @@ export default function Footer() {
               strokeWidth="1.8"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className={tabIconClass('chart-no-axes-column', financialsActive)}
+              className={tabIconClass('phone', financialsActive)}
               aria-hidden="true"
             >
-              <path d="M5 21v-6"></path>
-              <path d="M12 21V3"></path>
-              <path d="M19 21V9"></path>
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
             </svg>
-            <span className={tabLabelClass(financialsActive)}>Financials</span>
+            <span className={tabLabelClass(financialsActive)}>Contact</span>
           </Link>
           <Link className="flex flex-col items-center flex-1 pb-3 pt-2 gap-1" to={loggedIn ? '/profile' : '/login'}>
             <svg

@@ -419,7 +419,7 @@ export default function Volunteers() {
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                           <div>
                             <h1 className="text-4xl lg:text-5xl font-normal text-gray-800 leading-tight mb-6">
-                              Be a catalyst for<span className="text-[#0891b2] font-medium"> transforming lives</span>
+                              Be a catalyst for<span className="text-primary font-medium"> transforming lives</span>
                             </h1>
                             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                               At Agaram, volunteers are not just helping hands, they are catalysts for change. Whether
@@ -429,7 +429,7 @@ export default function Volunteers() {
                             <div className="space-y-4 mb-8">
                               {VOLUNTEER_POINTS.map((point) => (
                                 <div key={point} className="flex items-start space-x-3">
-                                  <div className="w-5 h-5 bg-[#0891b2] rounded-full mt-1 flex-shrink-0"></div>
+                                  <div className="w-5 h-5 bg-primary rounded-full mt-1 flex-shrink-0"></div>
                                   <p className="text-gray-700">{point}</p>
                                 </div>
                               ))}
@@ -451,7 +451,7 @@ export default function Volunteers() {
                                       viewBox="0 0 24 24"
                                       strokeLinecap="round"
                                       strokeLinejoin="round"
-                                      className="w-6 h-6 text-[#0891b2]"
+                                      className="w-6 h-6 text-primary"
                                       height="1em"
                                       width="1em"
                                       xmlns="http://www.w3.org/2000/svg"
@@ -473,7 +473,7 @@ export default function Volunteers() {
                                       viewBox="0 0 24 24"
                                       strokeLinecap="round"
                                       strokeLinejoin="round"
-                                      className="w-6 h-6 text-[#0891b2]"
+                                      className="w-6 h-6 text-primary"
                                       height="1em"
                                       width="1em"
                                       xmlns="http://www.w3.org/2000/svg"
@@ -496,7 +496,7 @@ export default function Volunteers() {
                                       viewBox="0 0 24 24"
                                       strokeLinecap="round"
                                       strokeLinejoin="round"
-                                      className="w-6 h-6 text-[#0891b2]"
+                                      className="w-6 h-6 text-primary"
                                       height="1em"
                                       width="1em"
                                       xmlns="http://www.w3.org/2000/svg"
@@ -741,7 +741,7 @@ export default function Volunteers() {
                             tabIndex={0}
                             disabled={submitting}
                             data-react-aria-pressable="true"
-                            className={`z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap subpixel-antialiased overflow-hidden tap-highlight-transparent transform-gpu data-[pressed=true]:scale-[0.97] cursor-pointer outline-solid outline-transparent data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 min-w-24 h-12 gap-3 rounded-large [&>svg]:max-w-[theme(spacing.8)] motion-reduce:transition-none data-[hover=true]:opacity-hover bg-[#0891b2] text-white px-8 py-3 text-base font-medium hover:bg-[#0e7490] transition-colors${submitting ? ' opacity-disabled pointer-events-none' : ''}`}
+                            className={`z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap subpixel-antialiased overflow-hidden tap-highlight-transparent transform-gpu data-[pressed=true]:scale-[0.97] cursor-pointer outline-solid outline-transparent data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 min-w-24 h-12 gap-3 rounded-large [&>svg]:max-w-[theme(spacing.8)] motion-reduce:transition-none data-[hover=true]:opacity-hover bg-primary text-white px-8 py-3 text-base font-medium hover:opacity-hover transition-colors${submitting ? ' opacity-disabled pointer-events-none' : ''}`}
                             onClick={handleSubmit}
                           >
                             {submitting ? 'Submitting...' : 'Log In & Submit'}

@@ -74,6 +74,27 @@ h3 {
   letter-spacing: -0.01em;
 }
 
+/* Brand theme: beige & white (overrides the compiled teal palette) */
+:root,
+.light,
+[data-theme='light'],
+[data-theme='dark'],
+.dark {
+  --heroui-primary-50: 37 45% 95%;
+  --heroui-primary-100: 36 44% 89%;
+  --heroui-primary-200: 35 42% 80%;
+  --heroui-primary-300: 34 40% 72%;
+  --heroui-primary-400: 34 38% 65%;
+  --heroui-primary-500: 34 38% 58%;
+  --heroui-primary: 34 38% 58%;
+  --heroui-primary-600: 34 38% 46%;
+  --heroui-primary-700: 34 40% 36%;
+  --heroui-primary-800: 34 42% 26%;
+  --heroui-primary-900: 35 44% 16%;
+  --heroui-primary-foreground: 0 0% 100%;
+  --heroui-focus: 34 38% 58%;
+}
+
 /* Navbar logo: fits the 64px mobile bar, larger on desktop */
 nav img[src*='agaram_logo'] {
   height: 56px;

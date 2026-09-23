@@ -21,7 +21,7 @@ const TIMELINE = [
   {
     year: '2006',
     num: '01',
-    color: '#00abc0',
+    color: '#C2A278',
     title: "Non-Profit Registration",
     text: "Registered as a non-profit organization, marking the beginning of Agaram’s mission to use education as a tool for social transformation.",
     cardLeft: '-120px',
@@ -38,7 +38,7 @@ const TIMELINE = [
   {
     year: '2007',
     num: '02',
-    color: '#00d4aa',
+    color: '#B08D5F',
     title: "School Adoption in Palur",
     text: "Adopted and restored the Government Adi Dravidar Welfare School in Palur, Chengalpattu, setting up a library and improving education quality.",
     cardLeft: '95.38461538461539px',
@@ -55,7 +55,7 @@ const TIMELINE = [
   {
     year: '2008',
     num: '03',
-    color: '#0088cc',
+    color: '#8A6D45',
     title: "Learning Centres & Awareness Film",
     text: "Launched Agaram Learning Centres to provide post-school coaching and skills for rural children and released \"Herova? Zerova?\", a short film to fight school dropouts.",
     cardLeft: '310.7692307692308px',
@@ -123,7 +123,7 @@ const TIMELINE = [
   {
     year: '2016',
     num: '07',
-    color: '#00abc0',
+    color: '#C2A278',
     title: "Yadhum Oorae & School Restorations",
     text: "Introduced the Yadhum Oorae environmental program, rehabilitated three flood-hit villages, and restored two government schools to improve learning conditions.",
     cardLeft: '1172.3076923076924px',
@@ -140,7 +140,7 @@ const TIMELINE = [
   {
     year: '2017',
     num: '08',
-    color: '#0088cc',
+    color: '#8A6D45',
     title: "Namathu Palli & Irula Village Development",
     text: "Adopted additional schools under Namathu Palli and upgraded infrastructure in Irula villages, enabling community certifications for residents.",
     cardLeft: '1387.6923076923076px',
@@ -157,7 +157,7 @@ const TIMELINE = [
   {
     year: '2018',
     num: '09',
-    color: '#00d4aa',
+    color: '#B08D5F',
     title: "Book Publication & School Expansion",
     text: "Published \"Aaram Seyya Virumbu\" and adopted three more government schools under Namathu Palli.",
     cardLeft: '1603.076923076923px',
@@ -191,7 +191,7 @@ const TIMELINE = [
   {
     year: '2021',
     num: '11',
-    color: '#00d4aa',
+    color: '#B08D5F',
     title: "Agaram Alumni Association",
     text: "Formed the Agaram Alumni Association to connect graduates and strengthen community ties.",
     cardLeft: '2033.8461538461538px',
@@ -208,7 +208,7 @@ const TIMELINE = [
   {
     year: '2022',
     num: '12',
-    color: '#0088cc',
+    color: '#8A6D45',
     title: "Namadhu Palli Fellowship Launch",
     text: "Launched Agaram Namadhu Palli Fellowship in Jawadhu Hills, placing four fellows in four schools to improve rural education.",
     cardLeft: '2249.230769230769px',
@@ -242,7 +242,7 @@ const TIMELINE = [
   {
     year: '2024',
     num: '14',
-    color: '#00d4aa',
+    color: '#B08D5F',
     title: "EmpowHer & Fellowship Growth",
     text: "Organized EmpowHer, an international conclave for women in STEM, published two Tamil books, and expanded the fellowship to 50 fellows in 49 schools.",
     cardLeft: '2680px',
@@ -417,12 +417,12 @@ export default function OurJourney() {
               onPointerLeave={endDrag}
             >
               <div className="absolute z-30" style={{ left: '40px', top: '50%', ...pan }}>
-                <div className="bg-gradient-to-r from-[#00abc0] to-[#00d4aa] text-white rounded-full px-8 py-4">
+                <div className="bg-gradient-to-r from-[#C2A278] to-[#B08D5F] text-white rounded-full px-8 py-4">
                   <span className="text-sm font-bold tracking-wide">START</span>
                 </div>
               </div>
               <div className="absolute z-30" style={{ left: '3250px', top: '50%', ...pan }}>
-                <div className="bg-gradient-to-r from-[#0088cc] to-[#00abc0] text-white rounded-full px-8 py-4">
+                <div className="bg-gradient-to-r from-[#8A6D45] to-[#C2A278] text-white rounded-full px-8 py-4">
                   <span className="text-sm font-bold tracking-wide">ONGOING</span>
                 </div>
               </div>
@@ -430,9 +430,9 @@ export default function OurJourney() {
                 <svg width="2800" height="400" viewBox="0 0 2800 400">
                   <defs>
                     <linearGradient id="timelineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#00abc0" />
-                      <stop offset="20%" stopColor="#00d4aa" />
-                      <stop offset="40%" stopColor="#0088cc" />
+                      <stop offset="0%" stopColor="#C2A278" />
+                      <stop offset="20%" stopColor="#B08D5F" />
+                      <stop offset="40%" stopColor="#8A6D45" />
                       <stop offset="60%" stopColor="#00b3d4" />
                       <stop offset="80%" stopColor="#00c7b7" />
                       <stop offset="100%" stopColor="#009fc7" />

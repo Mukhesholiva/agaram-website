@@ -5,7 +5,6 @@ import Footer from './components/Footer.jsx'
 import Home from './pages/Home.jsx'
 import OurMission from './pages/OurMission.jsx'
 import OurJourney from './pages/OurJourney.jsx'
-import Financials from './pages/Financials.jsx'
 import Partners from './pages/Partners.jsx'
 import Contact from './pages/Contact.jsx'
 import Donate from './pages/Donate.jsx'
@@ -32,7 +31,6 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/our_mission" element={<OurMission />} />
         <Route path="/our_journey" element={<OurJourney />} />
-        <Route path="/financials" element={<Financials />} />
         <Route path="/partners" element={<Partners />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/donate" element={<Donate />} />
@@ -41,6 +39,7 @@ export default function App() {
         <Route path="/join-us/volunteers" element={<Volunteers />} />
         <Route path="/privacy_policy" element={<PrivacyPolicy />} />
         <Route path="/terms_and_conditions" element={<TermsAndConditions />} />
+        <Route path="*" element={<Home />} />
       </Routes>
       <Footer />
     </BrowserRouter>
