@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { setMeta } from '../lib/meta.js';
 
 const CAROUSEL_SEQUENCES = [
   [1, 4, 11, 10, 13, 8, 2, 12, 3, 5, 6, 9, 7, 14],
@@ -267,7 +268,7 @@ export default function OurJourney() {
   const columnRefs = useRef([])
 
   useEffect(() => {
-    document.title = 'Our Journey | Venkata Sivaji Charitable Foundation'
+    setMeta('Our Journey | Venkata Sivaji Charitable Foundation', "The journey of Venkata Sivaji Charitable Foundation - serving communities with food, education, and care.");
   }, [])
 
   useEffect(() => {

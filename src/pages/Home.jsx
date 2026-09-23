@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { setMeta } from '../lib/meta.js';
 
 const SLIDES = [
   {
@@ -263,7 +264,7 @@ function FadeIn({ as: Tag = 'div', className, from, duration, delay = 0, ease = 
 
 export default function Home() {
   useEffect(() => {
-    document.title = 'Venkata Sivaji Charitable Foundation | Help The Needy'
+    setMeta('Venkata Sivaji Charitable Foundation | Help The Needy', "Venkata Sivaji Charitable Foundation, Ongole, Andhra Pradesh - supporting education, health care, and the welfare of the elderly. Donate to help the needy.");
   }, [])
 
   return (

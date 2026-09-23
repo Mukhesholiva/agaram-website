@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { setMeta } from '../lib/meta.js';
 
 const TRUSTEES = [
   { name: 'Mr. S Suriya', role: 'Founder Trustee' },
@@ -12,7 +13,7 @@ const IMPACT_TEXT =
 
 export default function OurMission() {
   useEffect(() => {
-    document.title = 'Our Mission | Venkata Sivaji Charitable Foundation'
+    setMeta('Our Mission | Venkata Sivaji Charitable Foundation', "Our mission: quality education, health care, and dignified support for the elderly and the underprivileged.");
   }, [])
 
   return (

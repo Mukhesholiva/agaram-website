@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
+import { setMeta } from '../lib/meta.js';
 import { api } from '../lib/api.js';
 
 export default function Contact() {
   useEffect(() => {
-    document.title = 'Contact Us | Venkata Sivaji Charitable Foundation';
+    setMeta('Contact Us | Venkata Sivaji Charitable Foundation', "Contact Venkata Sivaji Charitable Foundation, Ongole, Andhra Pradesh. Phone +91 80961 12016, email helpinghands1089@gmail.com.");
   }, []);
 
   const [name, setName] = useState('');

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { setMeta } from '../lib/meta.js';
 import { useNavigate } from 'react-router-dom';
 import { api, getToken } from '../lib/api.js';
 
@@ -315,7 +316,7 @@ export default function Volunteers() {
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    document.title = 'Agaram Foundation | Educate. Empower. Elevate.';
+    setMeta('Agaram Foundation | Educate. Empower. Elevate.', "Join Venkata Sivaji Charitable Foundation as a volunteer and help bring hope to those in need.");
   }, []);
 
   const handleSubmit = async () => {

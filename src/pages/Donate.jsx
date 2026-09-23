@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { setMeta } from '../lib/meta.js';
 import { api } from '../lib/api.js';
 
 /* ------------------------------------------------------------------ */
@@ -432,7 +433,7 @@ function PlanGroups({ groups, selectedId, onSelect }) {
 
 export default function Donate() {
   useEffect(() => {
-    document.title = 'Donate | Venkata Sivaji Charitable Foundation';
+    setMeta('Donate | Venkata Sivaji Charitable Foundation', "Donate to Venkata Sivaji Charitable Foundation and support food essentials, education, disability aid, and orphan care for those in need.");
   }, []);
 
   const [tab, setTab] = useState('one-time');

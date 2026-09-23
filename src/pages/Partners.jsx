@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { setMeta } from '../lib/meta.js';
 import { Link } from 'react-router-dom'
 import { PARTNERS } from '../data/partners.js'
 
@@ -46,7 +47,7 @@ export default function Partners() {
   const [activeTab, setActiveTab] = useState('All')
 
   useEffect(() => {
-    document.title = 'Our Partners | Venkata Sivaji Charitable Foundation'
+    setMeta('Our Partners | Venkata Sivaji Charitable Foundation', "Partners who support Venkata Sivaji Charitable Foundation's work for the needy.");
   }, [])
 
   const visible = activeTab === 'All' ? PARTNERS : PARTNERS.filter((p) => p.category === activeTab)
