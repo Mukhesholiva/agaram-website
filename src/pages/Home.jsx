@@ -7,8 +7,6 @@ const SLIDES = [
     subtitle: 'Can bring hope to someone’s life',
     background: 'linear-gradient(to top,#c9ab82 0%,#ddc9a8 33%,#efe5d3 66%,#ffffff 100%)',
     imageSrc: '/assets/images/slider/founder_cutout.webp',
-    leftSubtitle: 'Extend the power of education to every corner of society.',
-    rightSubtitle: 'Strive to bridge the gap between deserving students and quality education.',
   },
   {
     id: 'help-the-needy',
@@ -17,8 +15,6 @@ const SLIDES = [
     subtitle: '',
     background: 'linear-gradient(to top,#c9ab82 0%,#ddc9a8 33%,#efe5d3 66%,#ffffff 100%)',
     imageSrc: '/assets/images/slider/agaram_slider_img_1.webp',
-    leftSubtitle: 'A helping hand at the right time can make all the difference.',
-    rightSubtitle: 'Offering care, hope, and encouragement for a better tomorrow.',
   },
 ]
 
@@ -129,8 +125,6 @@ function HeroSlider() {
     }
     apply(slide.querySelector('.animated-img'), ['animate__animated', 'animate__zoomInUp'])
     apply(slide.querySelector('.animated-title'), ['animate__animated', 'animate__bounceInDown'])
-    apply(slide.querySelector('.animated-benefits'), ['animate__animated', 'animate__fadeInRight'])
-    apply(slide.querySelector('.animated-nutrients'), ['animate__animated', 'animate__fadeInLeft'])
   }, [index])
 
   return (
@@ -186,46 +180,34 @@ function HeroSlider() {
                     </h2>
                   ) : null}
                 </div>
-                <div className="flex flex-wrap items-center">
-                  <div className="w-full md:w-1/2 lg:w-1/3 order-2 lg:order-1 flex flex-col justify-start items-center text-white p-3 md:mb-3 animated-nutrients">
-                    <div className="grid grid-cols-1 gap-4 text-white w-full max-w-md">
-                      <div
-                        style={{ background: 'rgba(22, 22, 23, 0.2)' }}
-                        className="flex flex-col items-center justify-center p-4 text-center rounded-lg"
-                      >
-                        <p className="text-base sm:text-lg md:text-xl tracking-wide">
-                          {slide.leftSubtitle}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="w-full md:w-full lg:w-1/3 order-1 lg:order-2 flex justify-center items-center p-2">
-                    <div className="p-2 sm:p-4 text-white text-center">
-                      <div
-                        className="flex justify-center items-center mx-auto"
-                        style={{ width: 'min(400px, 100%)', height: 'min(400px, 62vw)' }}
-                      >
-                        <img
-                          alt={`${slide.title} image`}
-                          width="900"
-                          height="900"
-                          className="animated-img object-contain"
-                          style={{ color: 'transparent', maxWidth: '100%', maxHeight: '100%' }}
-                          src={slide.imageSrc}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="w-full md:w-1/2 lg:w-1/3 order-3 flex flex-col justify-center items-center text-white p-3 md:mb-3 mb-6 sm:mb-10 animated-benefits">
-                    <div className="grid grid-cols-1 gap-4 text-white w-full max-w-md">
-                      <div
-                        style={{ background: 'rgba(22, 22, 23, 0.2)' }}
-                        className="flex flex-col items-center justify-center p-4 text-center rounded-lg"
-                      >
-                        <p className="text-base sm:text-lg md:text-xl tracking-wide">
-                          {slide.rightSubtitle}
-                        </p>
-                      </div>
+                <div className="flex justify-center items-center w-full mb-6 sm:mb-8">
+                  <div className="p-2 sm:p-4 text-white text-center">
+                    <div
+                      className="relative flex justify-center items-center mx-auto"
+                      style={{ width: 'min(560px, 100%)', height: 'min(560px, 92vw)' }}
+                    >
+                      <img
+                        alt={`${slide.title} image`}
+                        width="900"
+                        height="900"
+                        className="animated-img object-contain"
+                        style={{ color: 'transparent', maxWidth: '100%', maxHeight: '100%' }}
+                        src={slide.imageSrc}
+                      />
+                      <img
+                        alt="Venkata Sivaji Charitable Foundation logo"
+                        src="/assets/images/logo/agaram_logo.png"
+                        className="absolute rounded-full bg-white shadow-lg"
+                        style={{
+                          top: '0px',
+                          right: '0px',
+                          width: 'min(110px, 24vw)',
+                          height: 'min(110px, 24vw)',
+                          objectFit: 'contain',
+                          padding: '6px',
+                          boxShadow: '0 4px 18px rgba(0,0,0,0.28)',
+                        }}
+                      />
                     </div>
                   </div>
                 </div>
